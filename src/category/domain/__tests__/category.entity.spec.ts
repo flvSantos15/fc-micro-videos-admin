@@ -1,3 +1,4 @@
+import { Uuid } from '../../../shared/domain/value-objects/uuid.vo'
 import { Category } from '../category.entity'
 
 describe('Category Unit Tests', () => {
@@ -6,7 +7,7 @@ describe('Category Unit Tests', () => {
       name: 'Movie'
     })
 
-    expect(category.category_id).toBeUndefined()
+    expect(category.category_id).toBeInstanceOf(Uuid)
     expect(category.name).toBe('Movie')
     expect(category.description).toBeNull()
     expect(category.is_active).toBeTruthy()
@@ -14,16 +15,18 @@ describe('Category Unit Tests', () => {
   })
 
   it('should create a category with all values', () => {
+    const category_id = new Uuid()
     const created_at = new Date()
 
     const category = new Category({
+      category_id,
       name: 'Movie',
       description: 'Movie description',
       is_active: false,
       created_at
     })
 
-    expect(category.category_id).toBeUndefined()
+    expect(category.category_id).toBe(category_id)
     expect(category.name).toBe('Movie')
     expect(category.description).toBe('Movie description')
     expect(category.is_active).toBe(false)
@@ -36,7 +39,7 @@ describe('Category Unit Tests', () => {
       description: 'another description'
     })
 
-    expect(category.category_id).toBeUndefined()
+    expect(category.category_id).toBeInstanceOf(Uuid)
     expect(category.name).toBe('Movie')
     expect(category.description).toBe('another description')
     expect(category.is_active).toBeTruthy()
@@ -49,7 +52,7 @@ describe('Category Unit Tests', () => {
       description: 'another description'
     })
 
-    expect(category.category_id).toBeUndefined()
+    expect(category.category_id).toBeInstanceOf(Uuid)
     expect(category.name).toBe('Movie')
     expect(category.description).toBe('another description')
     expect(category.is_active).toBe(true)
@@ -66,7 +69,7 @@ describe('Category Unit Tests', () => {
       is_active: false
     })
 
-    expect(category.category_id).toBeUndefined()
+    expect(category.category_id).toBeInstanceOf(Uuid)
     expect(category.name).toBe('Movie')
     expect(category.description).toBe('another description')
     expect(category.is_active).toBe(false)
@@ -82,7 +85,7 @@ describe('Category Unit Tests', () => {
       description: 'another description'
     })
 
-    expect(category.category_id).toBeUndefined()
+    expect(category.category_id).toBeInstanceOf(Uuid)
     expect(category.name).toBe('Movie')
     expect(category.description).toBe('another description')
     expect(category.is_active).toBeTruthy()

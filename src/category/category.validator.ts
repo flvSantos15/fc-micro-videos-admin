@@ -8,7 +8,7 @@ import {
 import { Category } from './domain/category.entity'
 import { ClassValidatorFields } from '../shared/domain/validators/class-validator-fields'
 
-class CategoryRules {
+export class CategoryRules {
   @MaxLength(255)
   @IsString()
   @IsNotEmpty()

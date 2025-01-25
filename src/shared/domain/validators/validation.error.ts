@@ -12,10 +12,14 @@ export abstract class BaseValidationError extends Error {
 
 export class ValidationError extends Error {}
 
-export class EntityValidationError extends BaseValidationError {
-  constructor(public error: FieldsErrors[]) {
-    super(error, 'Entity Validation Error')
+export class EntityValidationError extends Error {
+  constructor(public error: FieldsErrors, message = 'Validation Error') {
+    super(message)
     this.name = 'EntityValidationError'
+  }
+
+  count() {
+    return Object.keys(this.error).length
   }
 }
 

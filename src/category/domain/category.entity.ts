@@ -1,7 +1,7 @@
 import { EntityValidationError } from '../../shared/domain/validators/validation.error'
 import ValidatorRules from '../../shared/domain/validators/validator-rule'
 import { Uuid } from '../../shared/domain/value-objects/uuid.vo'
-import { CategoryValidatorFactory } from '../category.validator'
+import { CategoryValidatorFactory } from './category.validator'
 import { Entity } from '../../shared/domain/entity'
 import { ValueObject } from '../../shared/domain/value-object'
 

@@ -1,9 +1,13 @@
 import { EntityValidationError } from '../../shared/domain/validators/validation.error'
 import ValidatorRules from '../../shared/domain/validators/validator-rule'
 import { Uuid } from '../../shared/domain/value-objects/uuid.vo'
-import { CategoryValidatorFactory } from './category.validator'
+import {
+  CastegoryValidator,
+  CategoryValidatorFactory
+} from './category.validator'
 import { Entity } from '../../shared/domain/entity'
 import { ValueObject } from '../../shared/domain/value-object'
+import { CategoryFakeBuilder } from './category-fake.builder'
 
 export type CategoryProps = {
   category_id?: Uuid
@@ -72,6 +76,10 @@ export class Category extends Entity {
     if (!isValid) {
       throw new EntityValidationError(validator.errors)
     }
+  }
+
+  static fake() {
+    return CategoryFakeBuilder
   }
 
   toJSON() {

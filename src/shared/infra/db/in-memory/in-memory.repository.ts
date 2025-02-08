@@ -2,7 +2,7 @@ import { Entity } from '../../../domain/entity'
 import { NotFoundError } from '../../../domain/errors/not-found.error'
 import {
   IRepository,
-  ISearchableRepositorynds
+  ISearchableRepository
 } from '../../../domain/repository/repository-interface'
 import {
   SearchParams,
@@ -69,11 +69,11 @@ export abstract class InMemorySearchableRepository<
     Filter = string
   >
   extends InMemoryRepository<E, EntityId>
-  implements ISearchableRepositorynds<E, EntityId, Filter>
+  implements ISearchableRepository<E, EntityId, Filter>
 {
   sortableFields: string[] = []
 
-  async search(props: SearchParams<Filter>): Promise<SearchResult<Entity>> {
+  async search(props: SearchParams<Filter>): Promise<SearchResult<E>> {
     // filter, paginate, ordenate
     const itemsFiltered = await this.applyFilter(this.items, props.filter)
     const itemsSorted = this.applySort(

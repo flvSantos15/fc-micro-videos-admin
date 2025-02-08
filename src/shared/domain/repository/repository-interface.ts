@@ -15,7 +15,7 @@ export interface IRepository<E extends Entity, EntityId extends ValueObject> {
   getEntity(): new (...args: any[]) => E
 }
 
-export interface ISearchableRepositorynds<
+export interface ISearchableRepository<
   E extends Entity,
   EntityId extends ValueObject,
   Filter = string,

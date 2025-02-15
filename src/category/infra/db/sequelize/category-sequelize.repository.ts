@@ -34,7 +34,21 @@ export class CategorySequelizeRepository implements ICategoryRepository {
     await this.categoryModel.bulkCreate(modelsProps)
   }
 
-  async update(entity: Category): Promise<void> {}
+  async update(entity: Category): Promise<void> {
+    const id = entity.category_id.id
+
+    const modelProps = CategoryModelMapper.toModel(entity)
+    const [affectedRows] = await this.categoryModel.update(
+      modelProps.toJSON(),
+      {
+        where: { category_id: entity.category_id.id }
+      }
+    )
+
+    if (affectedRows !== 1) {
+      throw new NotFoundError(id, this.getEntity())
+    }
+  }
 
   async delete(category_id: Uuid): Promise<void> {
     const id = category_id.id
@@ -115,9 +129,9 @@ export class CategorySequelizeRepository implements ICategoryRepository {
         }
       }),
       ...(props.sort && this.sortableFields.includes(props.sort)
-        ? //? { order: [[props.sort, props.sort_dir]] }
-          { order: this.formatSort(props.sort, props.sort_dir!) }
-        : { order: [['created_at', 'desc']] }),
+        ? { order: [[props.sort, props.sort_dir]] }
+        : // { order: this.formatSort(props.sort, props.sort_dir!) }
+          { order: [['created_at', 'desc']] }),
       offset,
       limit
     })

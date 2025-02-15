@@ -90,7 +90,7 @@ describe('CategorySequelizeRepository Integration Test', () => {
 
       const searchOutput = await repository.search(new CategorySearchParams())
       expect(searchOutput).toBeInstanceOf(CategorySearchResult)
-      // expect(spyToEntity).toHaveBeenCalledTimes(15)
+      expect(spyToEntity).toHaveBeenCalledTimes(15)
       expect(searchOutput.toJSON()).toMatchObject({
         total: 16,
         current_page: 1,
@@ -124,7 +124,7 @@ describe('CategorySequelizeRepository Integration Test', () => {
         .build()
       const searchOutput = await repository.search(new CategorySearchParams())
       const items = searchOutput.items
-      ;[...items].reverse().forEach((item, index) => {
+      ;[...items].reverse().forEach((_, index) => {
         expect(`Movie ${index}`).toBe(`${categories[index + 1].name}`)
       })
     })

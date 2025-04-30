@@ -72,7 +72,7 @@ export class Category extends Entity {
     const isValid = validator.validate(entity);
 
     if (!isValid) {
-      throw new EntityValidationError(validator.errors);
+      throw new EntityValidationError([validator.errors]);
     }
   }
 

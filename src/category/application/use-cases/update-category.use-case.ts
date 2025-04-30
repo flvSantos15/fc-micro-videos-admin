@@ -1,7 +1,7 @@
-import { IUseCase } from "../../shared/application/use-case.interface";
-import { NotFoundError } from "../../shared/domain/errors/not-found.error";
-import { Category, CategoryId } from "../domain/category.entity";
-import { ICategoryRepository } from "../domain/category.repository";
+import { IUseCase } from "../../../shared/application/use-case.interface";
+import { NotFoundError } from "../../../shared/domain/errors/not-found.error";
+import { Category, CategoryId } from "../../domain/category.entity";
+import { ICategoryRepository } from "../../domain/category.repository";
 import { CategoryOutput, CategoryOutputMapper } from "./common/category-output";
 import { UpdateCategoryInput } from "./update-category.input";
 
